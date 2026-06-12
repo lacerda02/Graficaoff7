@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gráfica OFF7 – Impressão Rápida & Qualidade Superior</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000000;
+      --magenta: #FF0090;
+      --cyan: #00B4F0;
+      --yellow: #FFE600;
+      --gray: #3A3A3A;
+      --light-gray: #1A1A1A;
+      --white: #FFFFFF;
+      --text-muted: #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      display: flex;
+      align-items: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -1px;
+    }
+
+    .nav-logo-mark .off { color: var(--magenta); }
+    .nav-logo-mark .seven { color: var(--yellow); }
+    .nav-logo-mark .label {
+      color: var(--cyan);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-left: 8px;
+      border-left: 1px solid var(--gray);
+      padding-left: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--yellow); }
+
+    .nav-cta {
+      background: var(--magenta);
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 3px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: #cc0073 !important; color: white !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: white;
+      transition: all 0.3s;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 5% 0;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* Animated grid lines */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 60px 60px; }
+    }
+
+    /* CMYK colour splashes */
+    .splash {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.18;
+      animation: pulse 6s ease-in-out infinite alternate;
+    }
+
+    .splash-m { width: 500px; height: 500px; background: var(--magenta); top: -100px; right: 15%; animation-delay: 0s; }
+    .splash-c { width: 400px; height: 400px; background: var(--cyan);    bottom: -50px; left: 10%;  animation-delay: 2s; }
+    .splash-y { width: 350px; height: 350px; background: var(--yellow);  top: 30%;     right: 5%;  animation-delay: 4s; }
+
+    @keyframes pulse {
+      from { opacity: 0.1; transform: scale(1); }
+      to   { opacity: 0.22; transform: scale(1.15); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      animation: fadeUp 1s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 2px;
+      background: var(--cyan);
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title .line-accent { color: var(--yellow); }
+    .hero-title .line-magenta { color: var(--magenta); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--magenta);
+      color: white;
+      padding: 14px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 2px solid var(--magenta);
+      cursor: pointer;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--magenta);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      padding: 14px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 2px solid rgba(255,255,255,0.25);
+      cursor: pointer;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* Hero floating 7 */
+    .hero-seven {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      animation: floatSeven 4s ease-in-out infinite;
+    }
+
+    @keyframes floatSeven {
+      0%, 100% { transform: translateY(-50%) rotate(-3deg); }
+      50%       { transform: translateY(-53%) rotate(0deg); }
+    }
+
+    .seven-svg { width: clamp(200px, 25vw, 420px); height: auto; }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 50px;
+      left: 5%;
+      right: 5%;
+      z-index: 2;
+      display: flex;
+      gap: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-item { display: flex; flex-direction: column; gap: 4px; }
+
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--yellow);
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 100px 5%; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 1rem;
+    }
+
+    .section-tag::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: var(--magenta);
+    }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 550px;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ─── SERVICES ─── */
+    #servicos { background: var(--light-gray); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5px;
+    }
+
+    .service-card {
+      background: var(--black);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: transform 0.3s, background 0.3s;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--card-accent, var(--cyan));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+
+    .service-card:hover { background: #111; transform: translateY(-4px); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-card:nth-child(1) { --card-accent: var(--magenta); }
+    .service-card:nth-child(2) { --card-accent: var(--cyan); }
+    .service-card:nth-child(3) { --card-accent: var(--yellow); }
+    .service-card:nth-child(4) { --card-accent: var(--magenta); }
+    .service-card:nth-child(5) { --card-accent: var(--cyan); }
+    .service-card:nth-child(6) { --card-accent: var(--yellow); }
+
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+      color: var(--card-accent);
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── SLIDER / PORTFOLIO ─── */
+    #portfolio { background: var(--black); overflow: hidden; }
+
+    .portfolio-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 1.5rem;
+      animation: scrollTrack 28s linear infinite;
+      width: max-content;
+    }
+
+    .slider-track:hover { animation-play-state: paused; }
+
+    .slider-wrapper {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    }
+
+    @keyframes scrollTrack {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .portfolio-card {
+      width: 280px;
+      flex-shrink: 0;
+      background: var(--light-gray);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.3s;
+    }
+
+    .portfolio-card:hover { transform: scale(1.03); }
+
+    .portfolio-img {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      background: var(--p-bg, #111);
+    }
+
+    .portfolio-card:nth-child(1)  { --p-bg: #1a001a; }
+    .portfolio-card:nth-child(2)  { --p-bg: #001a1a; }
+    .portfolio-card:nth-child(3)  { --p-bg: #1a1a00; }
+    .portfolio-card:nth-child(4)  { --p-bg: #1a0010; }
+    .portfolio-card:nth-child(5)  { --p-bg: #00101a; }
+    .portfolio-card:nth-child(6)  { --p-bg: #101a00; }
+    .portfolio-card:nth-child(7)  { --p-bg: #1a001a; }
+    .portfolio-card:nth-child(8)  { --p-bg: #001a1a; }
+    .portfolio-card:nth-child(9)  { --p-bg: #1a1a00; }
+    .portfolio-card:nth-child(10) { --p-bg: #1a0010; }
+    .portfolio-card:nth-child(11) { --p-bg: #00101a; }
+    .portfolio-card:nth-child(12) { --p-bg: #101a00; }
+
+    .portfolio-info {
+      padding: 16px 18px;
+    }
+
+    .portfolio-type {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 4px;
+    }
+
+    .portfolio-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    /* ─── PROCESS ─── */
+    #processo { background: var(--light-gray); }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0;
+    }
+
+    .process-step {
+      padding: 40px 30px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .process-step:hover { background: rgba(255,255,255,0.02); }
+
+    .step-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 4rem;
+      line-height: 1;
+      opacity: 0.08;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .step-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+
+    .step-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      color: var(--yellow);
+    }
+
+    .step-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ─── TESTIMONIALS ─── */
+    #depoimentos { background: var(--black); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      background: var(--light-gray);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 32px;
+      position: relative;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,0,144,0.3);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 16px;
+      right: 24px;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--magenta);
+      opacity: 0.15;
+      font-family: Georgia, serif;
+    }
+
+    .stars { color: var(--yellow); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 2px; }
+
+    .testimonial-text {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      background: var(--av-bg, #222);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .author-role { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ─── CTA BAND ─── */
+    #cta-band {
+      background: var(--magenta);
+      padding: 80px 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta-band::before {
+      content: 'OFF7';
+      position: absolute;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 20vw;
+      color: rgba(0,0,0,0.08);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .cta-band-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .cta-band-sub {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .btn-white {
+      background: var(--black);
+      color: white;
+      padding: 16px 40px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 2px solid var(--black);
+      transition: all 0.25s;
+      display: inline-block;
+      position: relative;
+    }
+
+    .btn-white:hover { background: transparent; color: var(--black); }
+
+    /* ─── CONTACT ─── */
+    #contacto { background: var(--light-gray); }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(255,0,144,0.1);
+      border: 1px solid rgba(255,0,144,0.3);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-group label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      padding: 12px 16px;
+      color: white;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--magenta);
+    }
+
+    .form-group select option { background: #222; }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .form-submit {
+      background: var(--magenta);
+      color: white;
+      padding: 14px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 2px solid var(--magenta);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.25s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover { background: transparent; color: var(--magenta); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #050505;
+      padding: 60px 5% 30px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand-logo .f-off { color: var(--magenta); }
+    .footer-brand-logo .f-7   { color: var(--yellow); }
+
+    .footer-tagline { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; max-width: 280px; }
+
+    .footer-col-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .footer-col ul a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover { color: white; }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy { font-size: 0.78rem; color: var(--text-muted); }
+
+    .footer-cmyk {
+      display: flex;
+      gap: 6px;
+    }
+
+    .cmyk-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── WHATSAPP FAB ─── */
+    .fab-wa {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none;
+      font-size: 1.5rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      animation: popIn 0.5s 1.5s ease both;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0); }
+      to   { transform: scale(1); }
+    }
+
+    .fab-wa:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 70px; left: 0; right: 0;
+        background: rgba(0,0,0,0.97);
+        padding: 2rem 5%;
+        gap: 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .hero-seven { display: none; }
+      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+
+      .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 70px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-mark">
+        <span class="off">OFF</span><span class="seven">7</span>
+        <span class="label">Gráfica</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
+      <li><a href="#processo">Processo</a></li>
+      <li><a href="#depoimentos">Clientes</a></li>
+      <li><a href="#contacto" class="nav-cta">Orçamento</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg">
+      <div class="splash splash-m"></div>
+      <div class="splash splash-c"></div>
+      <div class="splash splash-y"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">Impressão Rápida &amp; Profissional</div>
+      <h1 class="hero-title">
+        A sua ideia<br>
+        <span class="line-accent">impressa</span><br>
+        <span class="line-magenta">sem demora.</span>
+      </h1>
+      <p class="hero-sub">
+        Na Gráfica OFF7 transformamos as suas ideias em peças gráficas de alta qualidade — cartões, banners, flyers, telas e muito mais. Entrega rápida, preço justo.
+      </p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn-primary">Pedir Orçamento</a>
+        <a href="#servicos" class="btn-secondary">Ver Serviços</a>
+      </div>
+    </div>
+
+    <!-- Animated 7 mark -->
+    <div class="hero-seven" aria-hidden="true">
+      <svg class="seven-svg" viewBox="0 0 420 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Yellow outer 7 -->
+        <path d="M60 30 L390 30 L390 80 L200 470 L140 470 L330 80 L60 80 Z"
+              fill="none" stroke="#FFE600" stroke-width="28" stroke-linejoin="round"/>
+        <!-- Magenta inner 7 -->
+        <path d="M100 30 L350 30 L350 80 L180 440 L130 440 L300 80 L100 80 Z"
+              fill="none" stroke="#FF0090" stroke-width="18" stroke-linejoin="round"
+              opacity="0.85"/>
+      </svg>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">+500</span>
+        <span class="stat-label">Clientes Ativos</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">24h</span>
+        <span class="stat-label">Entrega Expressa</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Anos de Experiência</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Satisfação Garantida</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="servicos">
+    <div class="section-tag">O Que Fazemos</div>
+    <h2 class="section-title reveal">Nossos Serviços</h2>
+    <p class="section-sub reveal">Do cartão de visita ao banner de grande formato — impressão com qualidade CMYK de ponta.</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">🖨️</span>
+        <div class="service-name">Impressão Digital</div>
+        <p class="service-desc">Alta resolução em papel couché, offset, satin e outros substratos. Acabamento profissional.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">📇</span>
+        <div class="service-name">Cartões de Visita</div>
+        <p class="service-desc">Cartões plastificados, verniz UV, laminados foscos ou brilhantes. Padrão que impressiona.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🪧</span>
+        <div class="service-name">Banners & Outdoors</div>
+        <p class="service-desc">Impressão em lona flexível para uso interno e externo. Resistente ao sol e à chuva.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">📄</span>
+        <div class="service-name">Flyers & Folhetos</div>
+        <p class="service-desc">Tiragens desde 100 exemplares. Cores vivas e nítidas para campanhas que se destacam.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🎨</span>
+        <div class="service-name">Design Gráfico</div>
+        <p class="service-desc">Criação de arte do zero ou finalização do seu ficheiro. Revisões inclusas no orçamento.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">📦</span>
+        <div class="service-name">Embalagens & Rótulos</div>
+        <p class="service-desc">Rótulos autocolantes, caixas personalizadas e embalagens para marcas que valorizam detalhe.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO SLIDER -->
+  <section id="portfolio">
+    <div class="portfolio-header">
+      <div>
+        <div class="section-tag">Portfólio</div>
+        <h2 class="section-title reveal">Trabalhos Recentes</h2>
+        <p class="section-sub reveal" style="margin-bottom:0">Uma amostra do que já saiu das nossas impressoras.</p>
+      </div>
+    </div>
+
+    <div class="slider-wrapper">
+      <div class="slider-track">
+        <!-- 6 cards × 2 (loop) -->
+        <div class="portfolio-card"><div class="portfolio-img">🖼️</div><div class="portfolio-info"><div class="portfolio-type">Banner</div><div class="portfolio-name">Campanha Verão 2024</div></div></div>
+        <div class="portfolio-card"><div class="portfolio-img">📇</div><div class="portfolio-info"><div class="portfolio-type">Cartão</div><div class="portfolio-name">Studio Legal Brand</div></div></div>
+        <div class="portfolio-card"><div class="portfolio-img">🗞️</div><div class="portfolio-info"><div class="portfolio-type">Flyer</div><div class="portfolio-name">Evento Corporativo</div></div></div>
+        <div class="portfolio-card"><div class="portfolio-img">📦</div><div class="portfolio-info"><div class="portfolio-type">Embalagem</div><div class="portfolio-name">Rótulo Premium</div></div></div>
+        <div class="portfolio-card"><div class="portfolio-img">🎨</div><div class="portfolio-info"><div class="portfolio-type">Design</div><div class="portfolio-name">Identidade Visual</div></div></div>
+        <div class="portfolio-card"><div class="portfolio-img">🖨️</div><div class="portfolio-info"><div class="portfolio-type">Impressão</div><div class="portfolio-name">Catálogo A4</div></div></div>
+        <!-- Duplicates for seamless loop -->
+        <div class="portfolio-card"><div class="portfolio-img">🖼️</div><div class="portfolio-info"><div class="portfolio-type">Banner</div><div class="portfolio-name">Campanha Verão 2024</div></div></div>
+        <div class="portfolio-card"><div class="portfolio-img">📇</div><div class="portfolio-info"><div class="portfolio-type">Cartão</div><div class="portfolio-name">Studio Legal Brand</div></div></div>
+        <div class="portfolio-card"><div class="portfolio-img">🗞️</div><div class="portfolio-info"><div class="portfolio-type">Flyer</div><div class="portfolio-name">Evento Corporativo</div></div></div>
+        <div class="portfolio-card"><div class="portfolio-img">📦</div><div class="portfolio-info"><div class="portfolio-type">Embalagem</div><div class="portfolio-name">Rótulo Premium</div></div></div>
+        <div class="portfolio-card"><div class="portfolio-img">🎨</div><div class="portfolio-info"><div class="portfolio-type">Design</div><div class="portfolio-name">Identidade Visual</div></div></div>
+        <div class="portfolio-card"><div class="portfolio-img">🖨️</div><div class="portfolio-info"><div class="portfolio-type">Impressão</div><div class="portfolio-name">Catálogo A4</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="processo">
+    <div class="section-tag">Como Funciona</div>
+    <h2 class="section-title reveal">Da Ideia à Impressão</h2>
+    <p class="section-sub reveal">Processo simples, resultado garantido.</p>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-icon">💬</div>
+        <div class="step-title">Orçamento</div>
+        <p class="step-desc">Envie-nos os detalhes do seu pedido via WhatsApp ou formulário. Respondemos em minutos.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">02</div>
+        <div class="step-icon">🎨</div>
+        <div class="step-title">Arte &amp; Design</div>
+        <p class="step-desc">Envie o seu ficheiro ou deixe que a nossa equipa crie do zero. Aprovação antes de imprimir.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">03</div>
+        <div class="step-icon">🖨️</div>
+        <div class="step-title">Produção</div>
+        <p class="step-desc">Impressão com tecnologia de última geração. Controlo de qualidade em cada peça.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">04</div>
+        <div class="step-icon">🚀</div>
+        <div class="step-title">Entrega</div>
+        <p class="step-desc">Levantamento em loja ou entrega ao domicílio. Rápido, seguro e sem surpresas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="depoimentos">
+    <div class="section-tag">Clientes</div>
+    <h2 class="section-title reveal">O Que Dizem de Nós</h2>
+    <p class="section-sub reveal">Satisfação garantida em cada encomenda.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Qualidade incrível nos cartões de visita! Entregaram em 24 horas como prometido. Já são minha gráfica de referência em Maputo.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="--av-bg:#1a0010;">👩🏾</div>
+          <div>
+            <div class="author-name">Ana Machava</div>
+            <div class="author-role">Designer Independente</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Encomendar banners para o nosso evento foi super fácil. A equipa ajudou com o design e o resultado ficou profissional demais.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="--av-bg:#001a10;">👨🏾</div>
+          <div>
+            <div class="author-name">Carlos Nhantumbo</div>
+            <div class="author-role">Gestor de Eventos</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Precisava de rótulos para os meus produtos e a OFF7 superou as expectativas. Cores perfeitas e preço excelente!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="--av-bg:#1a1000;">👩🏾</div>
+          <div>
+            <div class="author-name">Fátima Sitoe</div>
+            <div class="author-role">Empreendedora</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div id="cta-band">
+    <h2 class="cta-band-title">Pronto para Imprimir?</h2>
+    <p class="cta-band-sub">Peça o seu orçamento agora — sem compromisso, resposta em minutos.</p>
+    <a href="#contacto" class="btn-white">Fale Connosco Agora</a>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <div class="section-tag">Contacto</div>
+    <h2 class="section-title reveal">Pedir Orçamento</h2>
+    <p class="section-sub reveal">Preencha o formulário ou entre em contacto pelos nossos canais diretos.</p>
+
+    <div class="contact-layout">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Localização</div>
+            <div class="contact-value">Maputo, Moçambique</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-label">WhatsApp / Telefone</div>
+            <div class="contact-value">+258 84 000 0000</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">geral@graficaoff7.co.mz</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Horário</div>
+            <div class="contact-value">Seg – Sex: 08h00 – 18h00<br>Sábado: 08h00 – 13h00</div>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="O seu nome" required />
+          </div>
+          <div class="form-group">
+            <label for="tel">Telefone</label>
+            <input type="tel" id="tel" placeholder="+258 8X XXX XXXX" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="email@exemplo.com" required />
+        </div>
+        <div class="form-group">
+          <label for="servico">Serviço Pretendido</label>
+          <select id="servico">
+            <option value="">Selecione um serviço...</option>
+            <option>Impressão Digital</option>
+            <option>Cartões de Visita</option>
+            <option>Banners & Outdoors</option>
+            <option>Flyers & Folhetos</option>
+            <option>Design Gráfico</option>
+            <option>Embalagens & Rótulos</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="msg">Detalhes do Pedido</label>
+          <textarea id="msg" placeholder="Descreva o que precisa: quantidade, tamanho, prazo..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Enviar Pedido →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-logo">
+          <span class="f-off">OFF</span><span class="f-7">7</span>
+        </div>
+        <p class="footer-tagline">Gráfica rápida com qualidade profissional em Maputo. Da ideia ao produto final, estamos aqui.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Serviços</div>
+        <ul>
+          <li><a href="#servicos">Impressão Digital</a></li>
+          <li><a href="#servicos">Cartões de Visita</a></li>
+          <li><a href="#servicos">Banners</a></li>
+          <li><a href="#servicos">Flyers</a></li>
+          <li><a href="#servicos">Design Gráfico</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Empresa</div>
+        <ul>
+          <li><a href="#processo">Como Funciona</a></li>
+          <li><a href="#depoimentos">Clientes</a></li>
+          <li><a href="#contacto">Orçamento</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Gráfica OFF7. Todos os direitos reservados.</div>
+      <div class="footer-cmyk">
+        <div class="cmyk-dot" style="background:#00B4F0;" title="Cyan"></div>
+        <div class="cmyk-dot" style="background:#FF0090;" title="Magenta"></div>
+        <div class="cmyk-dot" style="background:#FFE600;" title="Yellow"></div>
+        <div class="cmyk-dot" style="background:#222;" title="Key (Black)" style="border:1px solid #444;"></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/258840000000" class="fab-wa" target="_blank" rel="noopener" title="Falar no WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 2C7.373 2 2 7.373 2 14c0 2.138.558 4.143 1.535 5.882L2 26l4.297-1.495A11.946 11.946 0 0014 26c6.627 0 12-5.373 12-12S20.627 2 14 2z" fill="white"/>
+      <path d="M19.614 16.548c-.294-.147-1.736-.856-2.005-.953-.27-.098-.466-.147-.662.147-.196.294-.76.953-.932 1.15-.171.196-.343.22-.637.073-.294-.147-1.241-.457-2.364-1.458-.873-.779-1.463-1.74-1.634-2.034-.171-.294-.018-.453.129-.599.132-.132.294-.343.441-.514.147-.171.196-.294.294-.49.098-.196.049-.368-.025-.514-.073-.147-.662-1.596-.907-2.185-.239-.574-.481-.496-.662-.505l-.564-.01c-.196 0-.514.073-.784.368-.27.294-1.029 1.005-1.029 2.45 0 1.445 1.054 2.842 1.201 3.038.147.196 2.074 3.168 5.026 4.44.702.303 1.25.484 1.676.619.704.224 1.345.192 1.852.117.565-.084 1.736-.71 1.981-1.396.245-.686.245-1.274.171-1.396-.073-.122-.27-.196-.564-.343z" fill="#25D366"/>
+    </svg>
+  </a>
+
+  <script>
+    // ── HAMBURGER ──
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    // Close on link click
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // ── SCROLL REVEAL ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ── NAVBAR BG on scroll ──
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').style.background =
+        window.scrollY > 60 ? 'rgba(0,0,0,0.97)' : 'rgba(0,0,0,0.85)';
+    });
+
+    // ── FORM ──
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = '✓ Enviado! Entraremos em contacto em breve.';
+      btn.style.background = '#00B4F0';
+      btn.style.borderColor = '#00B4F0';
+      btn.disabled = true;
+    }
+  </script>
+</body>
+</html>
